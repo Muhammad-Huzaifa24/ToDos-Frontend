@@ -1,27 +1,47 @@
 import React, {useState} from 'react'
 import { useForm } from "react-hook-form";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { MdAlternateEmail, MdPerson, MdLock, MdVisibility, MdVisibilityOff } from "react-icons/md";
 import FormLogo from "../../components/svg/form-logo"
 import {useCreateUser} from "../../hooks/useUser"
+import {showErrorToast, showSuccessToast} from "../../utils/toast-messages"
+import queryClient from "../../main.jsx"
+
 
 const SignUp = () => {
-    const { mutate, isLoading, error } = useCreateUser();
-
+    const { mutate, isLoading } = useCreateUser();
+    const navigate = useNavigate();
     const [showPassword, setShowPassword] = useState(false);
-     const {
+    const {
         register,
         handleSubmit,
         formState: { errors },
     } = useForm();
 
+    const handleResponse = (response, navigate) => {     
+        if (response?.success) {
+            showSuccessToast(response?.message);
+            queryClient.invalidateQueries(["users"]);
+            navigate("/login");
+        } else {
+            showErrorToast("Unexpected response format.");
+        }
+    };
+
+    const handleError = (error) => {        
+        const errorMessage = error?.response?.data?.message || "Something went wrong!";
+        showErrorToast(errorMessage);
+    };
+
     const onSubmit = (data) => {
-        console.log(data, error); 
-        mutate(data);
+        mutate(data, {
+            onSuccess: (response) => handleResponse(response, navigate),
+            onError: handleError,
+        });
     };
   return (
     <div 
-        className='min-w-sm min-h-screen h-screen flex items-center justify-center bg-white relative' 
+        className='min-w-sm min-h-screen flex items-center justify-center bg-white relative' 
     >
         <img 
             src="/src/assets/login-bg.svg" 
