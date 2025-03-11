@@ -1,7 +1,7 @@
 import { Button, Dialog, DialogPanel, DialogTitle } from '@headlessui/react';
 import React, {useState, useEffect} from 'react';
 import {useAddTodo, useUpdateTodo} from "../../hooks/useToDos";
-import {toast} from "react-toastify"
+import {showSuccessToast, showErrorToast} from "../../utils/toast-messages"
 
 const AddItem = ({ close, isOpen, data, type }) => {
   console.log(data);
@@ -21,7 +21,7 @@ const AddItem = ({ close, isOpen, data, type }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!note.trim()) {
-      toast.error('Title is required');
+      showErrorToast('Title is required')
       return;
     }
 
@@ -32,19 +32,13 @@ const AddItem = ({ close, isOpen, data, type }) => {
 
     if (type === 'edit') {
       updateMutation({ id: data._id, updatedTodo: todoData });
-      toast.success('Item Updated', {
-        style: { backgroundColor: '#4B0082', color: 'white' },
-        progressClassName: 'toast-progress-update',
-      });
-      close();
+      showSuccessToast('Item Updated')
+      
     } else {
       addMutation(todoData);
-      toast.success('Item Added', {
-        style: { backgroundColor: '#006400', color: 'white' },
-        progressClassName: 'toast-progress-add',
-      });
-      close();
+      showSuccessToast('Item Added')
     }
+    close();
   };
 
 
@@ -60,7 +54,7 @@ const AddItem = ({ close, isOpen, data, type }) => {
           <div className="flex min-h-full items-center justify-center">
             <DialogPanel
               transition
-              className="w-[500px] rounded-2xl bg-white px-7.5 py-4.5 backdrop-blur-2xl duration-300 ease-out data-[closed]:transform-[scale(95%)] data-[closed]:opacity-0"
+              className="w-[500px] rounded-2xl bg-[#F7F7F7] px-7.5 py-4.5 backdrop-blur-2xl duration-300 ease-out data-[closed]:transform-[scale(95%)] data-[closed]:opacity-0"
             >
                 <p className="text-center text-2xl font-medium text-[#252525]">
                     {type === 'add' ? 'Add Item' : 'Edit Item'}              

@@ -1,5 +1,6 @@
-import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-import { fetchTodos, addTodo, updateTodo, deleteTodo } from "../api/toDoService";
+import { useQuery, useMutation } from "@tanstack/react-query";
+import { fetchTodos, addTodo, updateTodo, deleteTodo } from "../api/toDos.service";
+import queryClient from "../main.jsx"
 
 export const useTodos = (isCompleted) => {
   return useQuery({
@@ -10,8 +11,6 @@ export const useTodos = (isCompleted) => {
 
 // Add Todo Mutation
 export const useAddTodo = () => {
-  const queryClient = useQueryClient();
-
   return useMutation({
     mutationFn: addTodo,
     onSuccess: () => {
@@ -22,8 +21,6 @@ export const useAddTodo = () => {
 
 // Update Todo Mutation
 export const useUpdateTodo = () => {
-  const queryClient = useQueryClient();
-
   return useMutation({
     mutationFn: ({ id, updatedTodo }) => updateTodo(id, updatedTodo),
     onSuccess: () => {
@@ -34,8 +31,6 @@ export const useUpdateTodo = () => {
 
 // Delete Todo Mutation
 export const useDeleteTodo = () => {
-  const queryClient = useQueryClient();
-
   return useMutation({
     mutationFn: deleteTodo,
     onSuccess: () => {

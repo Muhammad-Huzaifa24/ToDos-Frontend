@@ -1,8 +1,8 @@
 import React, {useState} from 'react'
 import { EditIcon, TrashIcon } from '../svg'
 import {useDeleteTodo, useUpdateTodo} from "../../hooks/useToDos"
-import {toast} from "react-toastify"
 import AddItem from './Add-item'
+import {showErrorToast, showSuccessToast} from "../../utils/toast-messages"
 
 const Item = ({data}) => {
   
@@ -12,20 +12,12 @@ const Item = ({data}) => {
 
   const handleDelete = () => {
     deleteMutation(data?._id);
-    toast.error('Item Deleted', {
-      style: { background: '#8B0000', color: 'white' }, 
-      progressClassName: 'toast-progress-delete',
-    });  
+    showErrorToast('Item Deleted') 
   } 
-
   const handleUpdate = () => {
     updateMutation({id: data?._id, updatedTodo: {isCompleted: !data?.isCompleted}});
-    toast.success('Item Updated', {
-      style: { background: '#4B0082', color: 'white' },
-      progressClassName: 'toast-progress-update',
-    });
+    showSuccessToast('Item Updated')
   }
-
   const handleCheckboxChange = () => {
     handleUpdate();
   };
