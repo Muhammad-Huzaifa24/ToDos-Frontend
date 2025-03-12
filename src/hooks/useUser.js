@@ -4,8 +4,10 @@ import {
     verifyUser,
     resetPassword,
     sendOtp,
-    verifyOtp
+    verifyOtp,
+    uploadProfilePicture
 } from "../api/user.service"
+import queryClient from "../main"
 
 // create a user
 export const useCreateUser = () => {
@@ -41,3 +43,18 @@ export const useResetPassword = () => {
         mutationFn: resetPassword
     });
 };
+
+export const useUploadProfilePicture = () => {
+    return useMutation({
+        mutationFn: uploadProfilePicture,
+        onSuccess: (data) => {
+            let user = JSON.parse(localStorage.getItem("user")) || {};
+            user.profilePicture = data.profilePicture;
+            localStorage.setItem("user", JSON.stringify(user));
+            queryClient.invalidateQueries(["user"])
+        },
+        onError: (error) => {
+            console.error("Image upload failed:", error);
+        },
+    })
+}

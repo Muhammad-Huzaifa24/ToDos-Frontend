@@ -29,4 +29,13 @@ export const resetPassword = async (data) => {
     return response.data;
 }
 
+export const uploadProfilePicture = async (formData) => {
+    const response = await axiosInstance.put("/user/update-avatar", formData, {
+        headers: {
+            "Content-Type": "multipart/form-data",
+        },
+    })
+    return response.data;
+}
+
 

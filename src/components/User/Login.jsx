@@ -6,7 +6,7 @@ import {useForm} from "react-hook-form"
 import {showErrorToast, showSuccessToast} from "../../utils/toast-messages.js"
 
 const Login = () => {
-    const { mutate, isLoading } = useVerifyUser();
+    const { mutate, isPending } = useVerifyUser();
     const navigate = useNavigate();
     const {
         register,
@@ -21,6 +21,7 @@ const Login = () => {
             showSuccessToast(response?.message);
             queryClient.invalidateQueries(["users"]);
             navigate("/to-dos", { replace: true });
+            localStorage.setItem('user', JSON.stringify(response?.user))
             localStorage.setItem("token", response?.token)
         } else {
             showErrorToast("Unexpected response format.");
@@ -73,8 +74,13 @@ const Login = () => {
                 </div>
                 <button          
                     type='submit' 
-                    className='cursor-pointer montserrat font-semibold text-[#2148C0] bg-white py-3.25 w-full rounded-sm mt-10.75 drop-shadow-[0_4px_4px_rgba(0,0,0,0.25)]'>    
-                    {isLoading ? "Signing in..." : "LOGIN"}
+                    className='flex items-center justify-center cursor-pointer montserrat font-semibold text-[#2148C0] bg-white py-3.25 w-full rounded-sm mt-10.75 drop-shadow-[0_4px_4px_rgba(0,0,0,0.25)]'>    
+                    {isPending ? 
+                        <>
+                            <span>Signing in</span> 
+                            <div className=" ml-2 w-5 h-5 border-2 border-[#2148C0] border-t-transparent rounded-full animate-spin"></div>
+                        </> : "LOGIN"
+                    }
                 </button>
                 <div 
                     title="reset password"

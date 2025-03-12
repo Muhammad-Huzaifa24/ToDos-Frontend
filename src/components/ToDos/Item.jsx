@@ -59,7 +59,7 @@ const Item = ({data}) => {
           )}
         </div>
       </div>
-      <div className='border my-4.25 border-[#CDCDCD]'></div>
+      <div className='border my-4.25 border-[#CDCDCD] darkBorder1'></div>
       {isOpenEditModal && <AddItem close={closeEditModal} isOpen={isOpenEditModal} data={data} type='edit'/>}
     </>
   )

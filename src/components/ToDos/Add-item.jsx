@@ -64,16 +64,16 @@ const AddItem = ({ close, isOpen, data, type }) => {
           <div className="flex min-h-full items-center justify-center">
             <DialogPanel
               transition
-              className="w-[500px] rounded-2xl bg-[#F7F7F7] px-7.5 py-4.5 backdrop-blur-2xl duration-300 ease-out data-[closed]:transform-[scale(95%)] data-[closed]:opacity-0"
+              className="w-[500px] rounded-2xl bg-[#F7F7F7] darkBackground  darkBorder px-7.5 py-4.5 backdrop-blur-2xl duration-300 ease-out data-[closed]:transform-[scale(95%)] data-[closed]:opacity-0"
             >
-                <p className="text-center text-2xl font-medium text-[#252525]">
+                <p className="text-center text-2xl font-medium text-[#252525] darkColor">
                     {type === 'add' ? 'Add Item' : 'Edit Item'}              
                 </p>
                 <form onSubmit={handleSubmit}>
                   <input type="text" 
                       value={note}
                       onChange={(e) => setNote(e.target.value)}
-                      className='w-[440px] text-[#C3C1E5] mt-6.25 px-4 py-2.75 border border-[#6C63FF] rounded-[5px] focus:outline-none'
+                      className='w-[440px] text-[#C3C1E5] mt-6.25 px-4 py-2.75 darkBorder border border-[#6C63FF] rounded-[5px] focus:outline-none'
                       placeholder='Input your note...'
                   />
                   <div className="mt-32 flex items-center w-full justify-between">

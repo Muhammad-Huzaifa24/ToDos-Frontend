@@ -81,6 +81,25 @@ input[type="checkbox"]:not(:checked)::before {
   font-family: "Montserrat", sans-serif;
 }
 
+[data-theme="dark"] .darkBackground {
+  background-color: #252525;
+  color: #F7F7F7;
+}
+[data-theme="dark"] .darkColor {
+  color: #F7F7F7;
+}
+
+[data-theme="dark"] .darkBorder {
+  border: 1px solid;
+  border-color: #F7F7F7;
+}
+[data-theme="dark"] .darkBorder1 {
+  border-color: #6C63FF;
+}
+
+
+
+
 
 
 
