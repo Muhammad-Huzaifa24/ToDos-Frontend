@@ -6,6 +6,7 @@ import PasswordForm from "../components/User/PasswordForm";
 import { useSendOTP, useVerifyOTP, useResetPassword } from "../hooks/useUser";
 import {showErrorToast, showSuccessToast} from "../utils/toast-messages"
 import { useNavigate } from "react-router-dom";
+import FormLogo from "../components/svg/form-logo";
 
 const ForgotPassword = () => {
   const navigate = useNavigate()
@@ -85,11 +86,11 @@ const ForgotPassword = () => {
 
   return (
     <div className="min-w-sm min-h-screen flex items-center justify-center bg-[#2148C0] relative overflow-hidden">
-      <img
+      {/* <img
         src="/src/assets/login-bg.svg"
         alt=""
         className="absolute inset-0 w-full h-full object-cover hidden md:block"
-      />
+      /> */}
       {/* Back Button (only visible if step > 1) */}
       {step > 1 && (
         <button 
@@ -101,7 +102,8 @@ const ForgotPassword = () => {
       )}
       
       <div className="flex items-center flex-col z-20 w-[320px]">
-        <img src="/src/assets/login-logo.svg" alt="" className="mb-[50px]" />
+        <FormLogo className='mb-[71.15px]'/>
+        {/* <img src="/src/assets/login-logo.svg" alt="" className="mb-[50px]" /> */}
 
         {step === 1 && <EmailForm email={email} setEmail={setEmail} onSubmit={handleEmailSubmit} isLoading={isSendingOTP} />}
         {step === 2 && <OTPForm otp={otp} setOtp={setOtp} onSubmit={handleOtpSubmit} isLoading={isVerifyingOTP} />}
