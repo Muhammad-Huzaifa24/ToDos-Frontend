@@ -3,7 +3,7 @@ import LoginPage from "./pages/Login";
 import SignUpPage from "./pages/SignUp"
 import ToDos from "./pages/ToDos"
 import NotFound from "./pages/NotFound"
-import ForgotPssword from "./pages/ForgotPassword"
+import ForgotPssword from "./pages/ForgotPssword"
 import App from "./App";
 import ProtectedRoute from "./routes/protected.routes"
 

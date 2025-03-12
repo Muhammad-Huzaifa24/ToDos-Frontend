@@ -128,7 +128,7 @@ const SignUp = () => {
                         className='font-medium text-base montserrat text-[#2148C0]' 
                         to="/login"
                     >
-                        Don't have an account?
+                        Already have an account?
                     </Link>
                 </div>
             </form>

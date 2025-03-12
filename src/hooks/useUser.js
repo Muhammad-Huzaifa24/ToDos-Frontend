@@ -1,7 +1,11 @@
 import { useMutation } from "@tanstack/react-query";
-import { registerUser, verifyUser } from "../api/user.service"
-import queryClient from "../main.jsx"
-// import { showErrorToast, showSuccessToast } from "../utils/toast-messages.js"
+import {
+    registerUser,
+    verifyUser,
+    resetPassword,
+    sendOtp,
+    verifyOtp
+} from "../api/user.service"
 
 // create a user
 export const useCreateUser = () => {
@@ -14,8 +18,26 @@ export const useCreateUser = () => {
 export const useVerifyUser = () => {
     return useMutation({
         mutationFn: verifyUser,
-        onSuccess: () => {
-            queryClient.invalidateQueries(["users"]);
-        },
+    });
+};
+
+// send otp
+export const useSendOTP = () => {
+    return useMutation({
+        mutationFn: sendOtp
+    });
+};
+
+// verify otp
+export const useVerifyOTP = () => {
+    return useMutation({
+        mutationFn: verifyOtp
+    });
+};
+
+// reset password
+export const useResetPassword = () => {
+    return useMutation({
+        mutationFn: resetPassword
     });
 };

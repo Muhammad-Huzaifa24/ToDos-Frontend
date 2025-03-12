@@ -13,4 +13,20 @@ export const verifyUser = async (data) => {
     return response.data;
 }
 
+export const sendOtp = async (data) => {
+    const response = await axiosInstance.post("/user/forgot-password", data);
+    console.log('response', response);
+    return response.data;
+};
+
+export const verifyOtp = async (data) => {
+    const response = await axiosInstance.post("/user/verify-otp", data);
+    return response.data;
+}
+
+export const resetPassword = async (data) => {
+    const response = await axiosInstance.post("/user/reset-password", data);
+    return response.data;
+}
+
 

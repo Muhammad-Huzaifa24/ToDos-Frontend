@@ -71,10 +71,14 @@ const Login = () => {
                         className='font-light montserrat focus:outline-none text-sm/5 text-white w-full'
                     />
                 </div>
-                <button type='submit' className='cursor-pointer montserrat font-semibold text-[#2148C0] bg-white py-3.25 w-full rounded-sm mt-10.75 drop-shadow-[0_4px_4px_rgba(0,0,0,0.25)]'>    
+                <button          
+                    type='submit' 
+                    className='cursor-pointer montserrat font-semibold text-[#2148C0] bg-white py-3.25 w-full rounded-sm mt-10.75 drop-shadow-[0_4px_4px_rgba(0,0,0,0.25)]'>    
                     {isLoading ? "Signing in..." : "LOGIN"}
                 </button>
-                <div className='w-full mt-2.75 flex items-center justify-end'>
+                <div 
+                    title="reset password"
+                    className='w-full mt-2.75 flex items-center justify-end'>
                     <Link className='font-medium text-base montserrat text-white text-right' to="/forgot-password">Forgot password?</Link>
                 </div>
         </form>

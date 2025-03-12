@@ -2,13 +2,12 @@ import { Button, Dialog, DialogPanel, DialogTitle } from '@headlessui/react';
 import React, {useState, useEffect} from 'react';
 import {useAddTodo, useUpdateTodo} from "../../hooks/useToDos";
 import {showSuccessToast, showErrorToast} from "../../utils/toast-messages"
+import queryClient from '../../main';
 
-const AddItem = ({ close, isOpen, data, type }) => {
-  console.log(data);
-  
+const AddItem = ({ close, isOpen, data, type }) => {  
   const [note, setNote] = useState('');
-  const {mutate: addMutation, isLoading: isAdding} = useAddTodo();
-  const { mutate: updateMutation, isLoading: isUpdating } = useUpdateTodo();
+  const {mutate: addMutation, isPending: isAdding} = useAddTodo();
+  const { mutate: updateMutation, isPending: isUpdating } = useUpdateTodo();
 
   useEffect(() => {
     if (type === 'edit' && data) {
@@ -31,14 +30,25 @@ const AddItem = ({ close, isOpen, data, type }) => {
     };
 
     if (type === 'edit') {
-      updateMutation({ id: data._id, updatedTodo: todoData });
-      showSuccessToast('Item Updated')
+      updateMutation({ id: data._id, updatedTodo: todoData }, {
+        onSuccess: () => {
+            queryClient.invalidateQueries(["todos"]);
+            showSuccessToast('Item Updated');
+            close();
+        }
+      });
+      // showSuccessToast('Item Updated')
       
     } else {
-      addMutation(todoData);
-      showSuccessToast('Item Added')
+      addMutation(todoData, {
+        onSuccess: () => {
+            queryClient.invalidateQueries(["todos"]);
+            showSuccessToast('Item Added');
+            close();
+        },
+      });
+      // showSuccessToast('Item Added')
     }
-    close();
   };
 
 
@@ -78,7 +88,11 @@ const AddItem = ({ close, isOpen, data, type }) => {
                           type='submit'
                           className='cursor-pointer px-6.5 font-medium text-lg h-[38px] flex items-center justify-center border border-[#6C63FF] bg-[#6C63FF] rounded-[5px] text-white'
                       >
-                        {isAdding ? 'Adding...' : isUpdating ? 'Updating...' : 'APPLY'}
+                        {(isAdding || isUpdating) ? (
+                          <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                        ) : (
+                          'APPLY'
+                        )}
                       </button>
                   </div>
                 </form>
