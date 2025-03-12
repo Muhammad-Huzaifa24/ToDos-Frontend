@@ -43,11 +43,11 @@ const SignUp = () => {
     <div 
         className='min-w-sm min-h-screen flex items-center justify-center bg-white relative' 
     >
-        <img 
+        {/* <img 
             src="/src/assets/login-bg.svg" 
             alt="" 
             className="absolute inset-0 w-full h-full object-cover hidden md:block"
-        />
+        /> */}
         <div className='flex items-center flex-col z-20'>
             <FormLogo stroke='#2148C0' className='mb-[30px]'/>
             {/* <img src="/src/assets/login-logo.svg" alt="" className='mb-[71.15px]'/> */}

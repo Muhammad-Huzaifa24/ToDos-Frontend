@@ -4,6 +4,7 @@ import {useVerifyUser} from "../../hooks/useUser"
 import queryClient from "../../main.jsx"
 import {useForm} from "react-hook-form"
 import {showErrorToast, showSuccessToast} from "../../utils/toast-messages.js"
+import FormLogo from '../svg/form-logo.jsx';
 
 const Login = () => {
     const { mutate, isPending } = useVerifyUser();
@@ -43,13 +44,14 @@ const Login = () => {
     <div 
         className='min-w-sm min-h-screen flex items-center justify-center bg-[#2148C0] relative' 
     >
-        <img 
+        {/* <img 
             src="/src/assets/login-bg.svg" 
             alt="" 
             className="absolute inset-0 w-full h-full object-cover hidden md:block"
-        />
+        /> */}
         <div className='flex items-center flex-col z-20'>
-            <img src="/src/assets/login-logo.svg" alt="" className='mb-[71.15px]'/>
+            <FormLogo className='mb-[71.15px]'/>
+            {/* <img src="/src/assets/login-logo.svg" alt="" className='mb-[71.15px]'/> */}
             <form action="" className='w-[300px]' onSubmit={handleSubmit(onSubmit)}>
                 {/* email field */}
                 <div role='username' className='rounded-sm border border-white py-3.25 px-3 flex items-center gap-4.25'>
