@@ -42,7 +42,7 @@ const Login = () => {
     };
   return (
     <div 
-        className='min-w-sm min-h-screen flex items-center justify-center bg-[#2148C0] relative' 
+        className='w-full min-w-[320px] h-screen flex items-center justify-center bg-[#2148C0] relative' 
     >
         {/* <img 
             src="/src/assets/login-bg.svg" 

@@ -21,6 +21,7 @@ const ToDos = () => {
 
   useEffect(() => {
     document.documentElement.setAttribute("data-theme", isDarkMode ? "dark" : "light");
+    document.body.style.backgroundColor = isDarkMode ? "#252525" : "white";
   }, [isDarkMode]);
 
   const open = () => setIsOpen(true)
@@ -68,7 +69,7 @@ const ToDos = () => {
 
   return (
     <>
-      <div className='h-screen w-screen min-w-sm darkBackground relative overflow-hidden'>
+      <div className='h-screen w-screen min-w-[320px] darkBackground relative'>
         <Navbar 
           userImage={userImage} 
           userName={userName} 
@@ -78,9 +79,9 @@ const ToDos = () => {
           onClick={handleTheme}
           isDarkMode ={isDarkMode}
         />
-      <div className="max-w-[750px] m-auto relative h-screen">
+      <div className="max-w-[750px] m-auto relative">
         <List onClick={handleTheme} isDarkMode={isDarkMode}/>
-        <div role='add-btn' onClick={open} className='shadow-lg absolute right-2 bottom-32 h-[50px] w-[50px] bg-[#6C63FF] rounded-full flex items-center justify-center hover:bg-[#534CC2] hover:cursor-pointer hover:border-2 hover:border-[#6C63FF] hover:shadow-[0_0_4px_0_#6C63FF]'>
+        <div role='add-btn' title='Add ToDo' onClick={open} className='shadow-lg absolute right-2 bottom-12 h-[50px] w-[50px] bg-[#6C63FF] rounded-full flex items-center justify-center hover:bg-[#534CC2] hover:cursor-pointer hover:border-2 hover:border-[#6C63FF] hover:shadow-[0_0_4px_0_#6C63FF]'>
             <AddIcon/>
         </div>
       </div>

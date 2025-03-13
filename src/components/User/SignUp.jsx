@@ -41,7 +41,7 @@ const SignUp = () => {
     };
   return (
     <div 
-        className='min-w-sm min-h-screen flex items-center justify-center bg-white relative' 
+        className='w-full min-w-[320px] h-screen flex items-center justify-center bg-white relative' 
     >
         {/* <img 
             src="/src/assets/login-bg.svg" 

@@ -85,7 +85,7 @@ const ForgotPassword = () => {
   };
 
   return (
-    <div className="min-w-sm min-h-screen flex items-center justify-center bg-[#2148C0] relative overflow-hidden">
+    <div className="w-full min-w-[320px] h-screen flex items-center justify-center bg-[#2148C0] relative overflow-hidden">
       {/* <img
         src="/src/assets/login-bg.svg"
         alt=""

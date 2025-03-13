@@ -14,8 +14,8 @@ const Navbar = ({
   isDarkMode 
 }) => {
   return (
-    <nav className="bg-gray-800 rounded-lg text-white px-6 py-4 flex justify-between items-center">
-      <div className="flex items-center gap-4">
+    <nav className="bg-[#252525] text-white px-6 py-4 flex justify-between items-center">
+      <div className="flex items-center gap-2">
         {/* Upload Picture */}
         <label title="Upload Picture" className="cursor-pointer flex items-center gap-2">
           {isPending ? (
@@ -24,7 +24,7 @@ const Navbar = ({
             <>
               <input type="file" className="hidden" accept="image/*" onChange={handleImageUpload} disabled={isPending} />
               {userImage ? (
-                <img src={userImage} alt="User" className="rounded-sm size-8 object-cover" />
+                <img src={userImage} alt="User" className="rounded-full size-8 object-cover" />
               ) : (
                 <FaUser className="border rounded-full size-8 p-1" />
               )}
