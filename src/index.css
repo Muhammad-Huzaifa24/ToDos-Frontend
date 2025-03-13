@@ -97,6 +97,18 @@ input[type="checkbox"]:not(:checked)::before {
   border-color: #6C63FF;
 }
 
+.scrollbar-custom::-webkit-scrollbar-track {
+  background: #252525;
+}
+.scrollbar-custom::-webkit-scrollbar {
+  width: 8px;
+}
+
+.scrollbar-custom {
+  scrollbar-width: thin;
+  scrollbar-color: #6C63FF #1e1e1e;
+}
+
 
 
 

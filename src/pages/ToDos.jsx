@@ -2,10 +2,10 @@ import React, {useState, useEffect} from 'react'
 import List from "../components/ToDos/List"
 import {AddIcon} from "../components/svg/"
 import AddItem from "../components/ToDos/Add-item";
-import { FaUser } from "react-icons/fa";
-import { RiLogoutCircleRLine } from "react-icons/ri";
 import { useNavigate } from 'react-router-dom';
 import {useUploadProfilePicture} from "../hooks/useUser"
+import Navbar from '../components/layout/Navbar';
+import {showErrorToast,showSuccessToast} from "../utils/toast-messages"
 
 
 const ToDos = () => {
@@ -56,51 +56,31 @@ const ToDos = () => {
     uploadImage(formData, {
       onSuccess: (data) => {
         setUserImage(data.profilePicture);
+        showSuccessToast(data.message)
+      },
+      onError: (err) => {
+        console.log('err', err?.response?.data?.message);
+        const errorMessage = err?.response?.data?.message || 'Something Went wrong'
+        showErrorToast(errorMessage);
       },
     });
   };
 
   return (
     <>
-      <div className='h-screen w-screen  darkBackground relative'>
-        <div className='absolute top-5 left-20 flex items-center gap-2 px-3 py-2'>
-           <label title="Upload picture" className="cursor-pointer flex items-center gap-2">
-            {isPending ? (
-              <div className=" ml-2 w-5 h-5 border-2 border-[#2148C0] border-t-transparent rounded-full animate-spin"></div>
-            ) : (
-              <>
-                <input
-                  type="file"
-                  className="hidden"
-                  accept="image/*"
-                  onChange={handleImageUpload}
-                  disabled={isPending} // Disable while uploading
-                />
-                {userImage ? (
-                  <img
-                    src={userImage}
-                    alt="User"
-                    className="border rounded-full size-8 object-cover"
-                  />
-                ) : (
-                  <FaUser className="border rounded-full size-8 p-1" />
-                )}
-              </>
-            )}
-          </label>
-          <span className='text-gray-400'>Hey there! {userName}</span>
-        </div>
-        <div 
-          title='logout' 
-          onClick={handleLogout}
-          className='hover:cursor-pointer hover:bg-gray-700 rounded-full absolute top-5 right-20 flex items-center gap-2 px-3 py-2'
-        >
-          <RiLogoutCircleRLine className='size-5' />
-          <span className='text-gray-400'>Logout</span>
-        </div>
+      <div className='h-screen w-screen min-w-sm darkBackground relative overflow-hidden'>
+        <Navbar 
+          userImage={userImage} 
+          userName={userName} 
+          handleLogout={handleLogout} 
+          handleImageUpload={handleImageUpload} 
+          isPending={isPending} 
+          onClick={handleTheme}
+          isDarkMode ={isDarkMode}
+        />
       <div className="max-w-[750px] m-auto relative h-screen">
         <List onClick={handleTheme} isDarkMode={isDarkMode}/>
-        <div role='add-btn' onClick={open} className='shadow-lg absolute right-2 bottom-8 h-[50px] w-[50px] bg-[#6C63FF] rounded-full flex items-center justify-center hover:bg-[#534CC2] hover:cursor-pointer hover:border-2 hover:border-[#6C63FF] hover:shadow-[0_0_4px_0_#6C63FF]'>
+        <div role='add-btn' onClick={open} className='shadow-lg absolute right-2 bottom-32 h-[50px] w-[50px] bg-[#6C63FF] rounded-full flex items-center justify-center hover:bg-[#534CC2] hover:cursor-pointer hover:border-2 hover:border-[#6C63FF] hover:shadow-[0_0_4px_0_#6C63FF]'>
             <AddIcon/>
         </div>
       </div>

@@ -43,13 +43,13 @@ const Item = ({data}) => {
             checked = {data?.isCompleted} name="" id="" 
             onChange={handleCheckboxChange}
             disabled={isUpdating}
-            className='w-6.5 h-6.5 rounded-[2px] border-none appearance-none relative checked:border-transparent checked:bg-[#6C63FF] border border-[#6C63FF]' 
+            className='md:w-6.5 md:h-6.5 w-4.5 h-4.5 rounded-[2px] border-none appearance-none relative checked:border-transparent checked:bg-[#6C63FF] border border-[#6C63FF]' 
           />
           <p className={`ml-4.25 ${data?.isCompleted ? 'line-through text-gray-500' : ''}`}>
             {data?.title}
           </p>
         </div>
-        <div className='flex gap-2.5 items-center'>
+        <div className='flex gap-2.5 items-center mr-2'>
           <EditIcon onClick={openEditModal}/>
           {/* Show Loader in place of TrashIcon while deleting */}
           {isDeleting ? (
