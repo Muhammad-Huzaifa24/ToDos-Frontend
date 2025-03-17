@@ -16,11 +16,11 @@ const List = ({onClick, isDarkMode}) => {
         item.title.toLowerCase().includes(searchQuery.toLowerCase())
     );
     return (
-        <div>
-            <div role='head-section' className='flex  flex-col gap-4.5 items-center'>
+        <>
+            <div role='head-section' className='flex flex-col gap-4.5 items-center'>
                 <p className='text-[#252525] text-[26px] font-medium pt-3 text-center darkBackground'>TODO LIST</p>
                 <div role='header' id='header' className=' md:mx-0 mx-6 flex items-center  gap-1 flex-wrap'>
-                    <div title='Search todos' id='search-todos' role='search-input' className='flex md:w-[590px] w-[350px] border border-[#6C63FF] rounded-[5px] relative darkBorder'>
+                    <div title='Search todos' id='search-todos' role='search-input' className='flex md:w-[590px] min-w-[300px] border border-[#6C63FF] rounded-[5px] relative darkBorder'>
                         <input type="text" 
                             className='text-[#C3C1E5] w-full h-9.5 px-4 text-base font-medium focus:outline-none focus:ring-[2px] focus:ring-[#6C63FF]/40 rounded-[5px]'
                             placeholder='Search note...'
@@ -56,17 +56,17 @@ const List = ({onClick, isDarkMode}) => {
                     </div>
                 </div>
             </div>
-            <div role='body-section' className='pt-7.5'>
-                <div className={`md:w-[520px]  w-[350px] m-auto overflow-auto h-96 ${isDarkMode ? 'scrollbar-custom-dark' : 'scrollbar-custom'}`}>
+            {/* <div className='h-[400px] border'></div> */}
+            <div role='body-section' className='pt-7.5 md:w-[520px] px-4 m-auto'>
+                <div className={`m-auto overflow-auto h-96 ${isDarkMode ? 'scrollbar-custom-dark' : 'scrollbar-custom'}`}>
                     {filteredData?.length > 0 ? filteredData?.map((item) => (
                         <Item key={item._id} data={item} />
                     )) : (
                         <NoDataFound/>
                     )}
                 </div>
-            </div>
-        
-        </div>
+            </div>    
+        </>
   )
 }
 
