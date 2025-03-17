@@ -18,11 +18,11 @@ const List = ({onClick, isDarkMode}) => {
     return (
         <>
             <div role='head-section' className='flex flex-col gap-4.5 items-center'>
-                <p className='text-[#252525] text-[26px] font-medium pt-3 text-center darkBackground'>TODO LIST</p>
+                <p className='text-[#252525] sm:text-[26px] text-base font-medium pt-3 text-center darkBackground'>TODO LIST</p>
                 <div role='header' id='header' className=' md:mx-0 mx-6 flex items-center  gap-1 flex-wrap'>
                     <div title='Search todos' id='search-todos' role='search-input' className='flex md:w-[590px] min-w-[300px] border border-[#6C63FF] rounded-[5px] relative darkBorder'>
                         <input type="text" 
-                            className='text-[#C3C1E5] w-full h-9.5 px-4 text-base font-medium focus:outline-none focus:ring-[2px] focus:ring-[#6C63FF]/40 rounded-[5px]'
+                            className='text-[#C3C1E5] w-full h-9.5 px-4 sm:text-base text-sm font-medium focus:outline-none focus:ring-[2px] focus:ring-[#6C63FF]/40 rounded-[5px]'
                             placeholder='Search note...'
                             value={searchQuery}
                             onChange={(e) => setSearchQuery(e.target.value)}

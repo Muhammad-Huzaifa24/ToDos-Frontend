@@ -3,6 +3,8 @@ import { FaUser } from "react-icons/fa";
 import { RiLogoutCircleRLine } from "react-icons/ri";
 import { MdLightMode } from "react-icons/md";
 import { MdDarkMode } from "react-icons/md";
+import { IoMdAddCircle } from "react-icons/io";
+
 
 const Navbar = ({ 
   userImage, 
@@ -11,7 +13,8 @@ const Navbar = ({
   handleImageUpload, 
   isPending, 
   onClick, 
-  isDarkMode 
+  isDarkMode,
+  handleAddItem 
 }) => {
   return (
     <nav className="bg-[#252525] text-white px-6 py-4 flex justify-between items-center">
@@ -24,9 +27,9 @@ const Navbar = ({
             <>
               <input type="file" className="hidden" accept="image/*" onChange={handleImageUpload} disabled={isPending} />
               {userImage ? (
-                <img src={userImage} alt="User" className="rounded-full size-8 object-cover" />
+                <img src={userImage} alt="User" className="rounded-full sm:size-8 size-6 object-cover" />
               ) : (
-                <FaUser className="border rounded-full size-8 p-1" />
+                <FaUser className="border rounded-full sm:size-8 size-6 p-1" />
               )}
             </>
           )}
@@ -34,19 +37,20 @@ const Navbar = ({
         {/* User Name */}
         <span className="text-gray-300">{userName ? `Hey, ${userName}!` : "Guest"}</span>
       </div>
-
+          
         {/* Logout Button */}
-        <div className="flex items-center ">
+        <div className="flex items-center">
+          <IoMdAddCircle className='size-5 mr-2 sm:hidden block' onClick={handleAddItem}/>
           <button onClick={handleLogout} title="Logout" className="cursor-pointer flex items-center gap-2 hover:bg-gray-700 p-2 rounded-full">
-          <RiLogoutCircleRLine className='size-5' />
-          <span className='text-gray-400 md:block hidden'>Logout</span>
-        </button>
-        <button onClick={onClick} className="md:hidden flex cursor-pointer items-center gap-2 hover:bg-gray-700 p-2 rounded-full">
-          {isDarkMode
-            ? <MdDarkMode className='size-5 ' />
-            : <MdLightMode className='size-5 ' />
-          }
-        </button>
+            <RiLogoutCircleRLine className='size-5' />
+            <span className='text-gray-400 md:block hidden'>Logout</span>
+          </button>
+          <button onClick={onClick} className="md:hidden flex cursor-pointer items-center gap-2 hover:bg-gray-700 p-2 rounded-full">
+            {isDarkMode
+              ? <MdDarkMode className='size-5 ' />
+              : <MdLightMode className='size-5 ' />
+            }
+          </button>
         </div>
     </nav>
   );

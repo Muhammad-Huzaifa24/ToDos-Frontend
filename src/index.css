@@ -71,6 +71,14 @@ input[type="checkbox"]:not(:checked)::before {
   background-color: transparent;
   border-radius: 2px; /* Rounded corners */
 }
+@media screen and (max-width: 640px){
+  input[type="checkbox"]:checked::after {
+  width: 10px; /* Size of the tick icon */
+  height: 10px; /* Size of the tick icon */
+  top: 3px; /* Adjust this to center your tick */
+  left: 4px; /* Adjust this to center your tick */
+}
+}
 .toast-progress-delete, .toast-progress-add, .toast-progress-update{
   background-color: white !important;
 }

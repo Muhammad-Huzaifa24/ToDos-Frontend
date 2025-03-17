@@ -78,10 +78,11 @@ const ToDos = () => {
           isPending={isPending} 
           onClick={handleTheme}
           isDarkMode ={isDarkMode}
+          handleAddItem={open}
         />
       <div className="max-w-[750px] m-auto relative">
         <List onClick={handleTheme} isDarkMode={isDarkMode}/>
-        <div role='add-btn' title='Add ToDo' onClick={open} className='shadow-lg absolute right-2 bottom-12 h-[50px] w-[50px] bg-[#6C63FF] rounded-full flex items-center justify-center hover:bg-[#534CC2] hover:cursor-pointer hover:border-2 hover:border-[#6C63FF] hover:shadow-[0_0_4px_0_#6C63FF]'>
+        <div role='add-btn' title='Add ToDo' onClick={open} className='sm:flex shadow-lg absolute right-2 bottom-12 h-[50px] w-[50px] bg-[#6C63FF] rounded-full hidden items-center justify-center hover:bg-[#534CC2] hover:cursor-pointer hover:border-2 hover:border-[#6C63FF] hover:shadow-[0_0_4px_0_#6C63FF]'>
             <AddIcon/>
         </div>
       </div>
