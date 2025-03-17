@@ -53,8 +53,8 @@ const AddItem = ({ close, isOpen, data, type }) => {
 
 
   return (
-    <div>
-      <Dialog open={isOpen} onClose={close} className="relative z-10 focus:outline-none">
+    <>
+      <Dialog open={isOpen} onClose={close} className="relative z-10 focus:outline-none ">
         {/* Apply custom backdrop styles here */}
         <div
           className={`fixed inset-0 z-10 w-screen overflow-y-auto ${
@@ -64,21 +64,21 @@ const AddItem = ({ close, isOpen, data, type }) => {
           <div className="flex min-h-full items-center justify-center">
             <DialogPanel
               transition
-              className="w-[500px] rounded-2xl bg-[#F7F7F7] darkBackground  darkBorder px-7.5 py-4.5 backdrop-blur-2xl duration-300 ease-out data-[closed]:transform-[scale(95%)] data-[closed]:opacity-0"
+              className="sm:w-[500px] w-[300px] sm:rounded-2xl rounded-lg bg-[#F7F7F7] darkBackground  darkBorder px-7.5 py-4.5 backdrop-blur-2xl duration-300 ease-out data-[closed]:transform-[scale(95%)] data-[closed]:opacity-0"
             >
-                <p className="text-center text-2xl font-medium text-[#252525] darkColor">
+                <p className="text-center sm:text-2xl text-base font-medium text-[#252525] darkColor">
                     {type === 'add' ? 'Add Item' : 'Edit Item'}              
                 </p>
                 <form onSubmit={handleSubmit}>
                   <input type="text" 
                       value={note}
                       onChange={(e) => setNote(e.target.value)}
-                      className='w-[440px] text-[#C3C1E5] mt-6.25 px-4 py-2.75 darkBorder border border-[#6C63FF] rounded-[5px] focus:outline-none'
+                      className='sm:w-[440px] w-full text-[#C3C1E5] sm:mt-6.25 mt-5 px-4 text-sm sm:text-base sm:py-2.75 py-2 darkBorder border border-[#6C63FF] rounded-[5px] focus:outline-none'
                       placeholder='Input your note...'
                   />
-                  <div className="mt-32 flex items-center w-full justify-between">
+                  <div className="mt-32 flex items-center w-full justify-between flex-col gap-2 sm:flex-row">
                       <div
-                          className='cursor-pointer px-6.5 font-medium text-lg h-[38px] flex items-center justify-center  border border-[#6C63FF] rounded-[5px] text-[#6C63FF]'
+                          className='w-full sm:w-auto cursor-pointer px-6.5 font-medium sm:text-lg text-sm h-[38px] flex items-center justify-center  border border-[#6C63FF] rounded-[5px] text-[#6C63FF]'
                           onClick={close}
                       >
                           CANCEL
@@ -86,7 +86,7 @@ const AddItem = ({ close, isOpen, data, type }) => {
                       <button
                           disabled={isAdding || isUpdating}
                           type='submit'
-                          className='cursor-pointer px-6.5 font-medium text-lg h-[38px] flex items-center justify-center border border-[#6C63FF] bg-[#6C63FF] rounded-[5px] text-white'
+                          className='w-full sm:w-auto cursor-pointer px-6.5 font-medium sm:text-lg text-sm h-[38px] flex items-center justify-center border border-[#6C63FF] bg-[#6C63FF] rounded-[5px] text-white'
                       >
                         {(isAdding || isUpdating) ? (
                           <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
@@ -100,7 +100,7 @@ const AddItem = ({ close, isOpen, data, type }) => {
           </div>
         </div>
       </Dialog>
-    </div>
+    </>
   );
 };
 
